@@ -1,60 +1,95 @@
+/* Global Styles */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Arial', sans-serif;
+    font-family: 'Poppins', sans-serif;
+    scroll-behavior: smooth;
 }
 
 body {
-    background-color: #121212;
+    background: #121212;
     color: #e0e0e0;
-    text-align: center;
-    padding: 20px;
+    transition: background 0.5s, color 0.5s;
 }
 
-.container {
-    background: rgba(255, 255, 255, 0.05);
-    border-radius: 10px;
-    padding: 20px;
-    box-shadow: 0 0 15px rgba(0, 255, 255, 0.5);
-    max-width: 600px;
-    margin: auto;
-    backdrop-filter: blur(10px);
-    transition: all 0.5s;
-}
-
-.profile .background-img {
+#particles-js {
+    position: fixed;
     width: 100%;
-    height: auto;
-    opacity: 0.2;
-    position: absolute;
-    top: 0;
-    left: 0;
+    height: 100%;
     z-index: -1;
+    background: #0d0d0d;
 }
 
-button {
+/* Navbar */
+.navbar {
+    display: flex;
+    justify-content: space-between;
     padding: 10px 20px;
-    background: #00bcd4;
+    background: rgba(0, 0, 0, 0.8);
+    position: fixed;
+    width: 100%;
+    z-index: 999;
+}
+
+.navbar ul {
+    display: flex;
+    list-style: none;
+}
+
+.navbar li {
+    margin: 0 15px;
+}
+
+.navbar a {
     color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background 0.3s;
-}
-
-button:hover {
-    background: #008c9e;
-}
-
-a {
-    display: block;
-    color: #00bcd4;
     text-decoration: none;
-    margin: 10px 0;
     transition: color 0.3s;
 }
 
-a:hover {
-    color: #008c9e;
+.navbar a:hover {
+    color: #00e5ff;
+}
+
+/* Hero Section */
+.hero {
+    text-align: center;
+    padding: 100px 20px;
+    background: linear-gradient(135deg, #1f1c2c, #928dab);
+    color: white;
+    animation: fadeIn 2s ease-in-out;
+}
+
+.hero h2 span {
+    color: #00e5ff;
+}
+
+/* Content Sections */
+.content-section {
+    padding: 50px 20px;
+}
+
+.card {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 20px;
+    margin: 10px;
+    border-radius: 10px;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 10px 20px rgba(0, 229, 255, 0.5);
+}
+
+/* Theme Toggle */
+.dark-theme {
+    background: #1a1a1a;
+    color: #e0e0e0;
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-20px); }
+    to { opacity: 1; transform: translateY(0); }
 }
