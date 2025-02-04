@@ -3,38 +3,85 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ankit's Resume</title>
+    <title>Ankit's Professional Portfolio</title>
     <link rel="stylesheet" href="style.css">
     <script src="script.js" defer></script>
+    <script src="particles.js" defer></script> <!-- For animated background -->
 </head>
 <body>
-    <div class="container" id="secure-content">
-        <header>
-            <h1>Ankit</h1>
-            <p>Class 11 - Science | Additional Subject: IP</p>
-        </header>
+    <!-- Particle Background -->
+    <div id="particles-js"></div>
 
-        <section class="profile">
-            <img src="assets/profile.jpg" alt="Ankit's Photo" class="background-img">
-        </section>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <h1>Ankit</h1>
+        <ul>
+            <li><a href="#about">About</a></li>
+            <li><a href="#education">Education</a></li>
+            <li><a href="#skills">Skills</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+        <button onclick="toggleTheme()">🌙</button>
+    </nav>
 
-        <section class="details">
-            <h2>Academic Qualifications</h2>
-            <ul>
-                <li>Class 11 (Science)</li>
-                <li>Information Practices (IP)</li>
-            </ul>
-        </section>
+    <!-- Hero Section -->
+    <section class="hero">
+        <h2>Hi, I'm <span>Ankit</span></h2>
+        <p>Aspiring Tech Enthusiast | Class 11 Science | IP Developer</p>
+        <button onclick="authenticate()">View My Resume</button>
+    </section>
 
-        <section class="documents">
-            <h2>Documents</h2>
-            <button onclick="authenticate()">Access Secure Documents</button>
-            <div id="doc-links" style="display:none;">
-                <a href="assets/documents/degree.pdf" target="_blank">Degree</a>
-                <a href="assets/documents/result.pdf" target="_blank">Results</a>
-                <a href="assets/documents/qualification.pdf" target="_blank">Qualifications</a>
-            </div>
-        </section>
-    </div>
+    <!-- About Section -->
+    <section id="about" class="content-section">
+        <h2>About Me</h2>
+        <p>I’m Ankit, passionate about technology, Kali Linux, and software development. Always eager to learn and innovate.</p>
+    </section>
+
+    <!-- Education Section -->
+    <section id="education" class="content-section">
+        <h2>Education</h2>
+        <div class="card">
+            <h3>Class 11 - Science</h3>
+            <p>Additional Subject: Information Practices (IP)</p>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="content-section">
+        <h2>Skills</h2>
+        <ul class="skills-list">
+            <li>HTML/CSS</li>
+            <li>JavaScript</li>
+            <li>Kali Linux Tools</li>
+            <li>Git & GitHub</li>
+            <li>NodeMCU Projects</li>
+        </ul>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="content-section">
+        <h2>Projects</h2>
+        <div class="card">Wi-Fi Scanning & Jamming Scripts</div>
+        <div class="card">IoT Home Automation (NodeMCU)</div>
+        <div class="card">GitHub Resume Website</div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="content-section">
+        <h2>Contact Me</h2>
+        <p>Email: ankit@example.com</p>
+        <p>GitHub: github.com/Ankit</p>
+    </section>
+
+    <!-- Secure Documents -->
+    <section class="secure-section">
+        <h2>Secure Documents</h2>
+        <div id="doc-links" style="display:none;">
+            <a href="assets/documents/degree.pdf" target="_blank">Degree</a>
+            <a href="assets/documents/result.pdf" target="_blank">Results</a>
+            <a href="assets/documents/qualification.pdf" target="_blank">Qualifications</a>
+        </div>
+    </section>
 </body>
 </html>
