@@ -1,87 +1,39 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ankit's Professional Portfolio</title>
-    <link rel="stylesheet" href="style.css">
-    <script src="script.js" defer></script>
-    <script src="particles.js" defer></script> <!-- For animated background -->
-</head>
-<body>
-    <!-- Particle Background -->
-    <div id="particles-js"></div>
-
-    <!-- Navigation Bar -->
-    <nav class="navbar">
-        <h1>Ankit</h1>
-        <ul>
-            <li><a href="#about">About</a></li>
-            <li><a href="#education">Education</a></li>
-            <li><a href="#skills">Skills</a></li>
-            <li><a href="#projects">Projects</a></li>
-            <li><a href="#contact">Contact</a></li>
-        </ul>
-        <button onclick="toggleTheme()">🌙</button>
-    </nav>
-
-    <!-- Hero Section -->
-    <section class="hero">
-        <h2>Hi, I'm <span>Ankit</span></h2>
-        <p>Aspiring Tech Enthusiast | Class 11 Science | IP Developer</p>
-        <button onclick="authenticate()">View My Resume</button>
-    </section>
-
-    <!-- About Section -->
-    <section id="about" class="content-section">
-        <h2>About Me</h2>
-        <p>I’m Ankit, passionate about technology, Kali Linux, and software development. Always eager to learn and innovate.</p>
-    </section>
-
-    <!-- Education Section -->
-    <section id="education" class="content-section">
-        <h2>Education</h2>
-        <div class="card">
-            <h3>Class 11 - Science</h3>
-            <p>Additional Subject: Information Practices (IP)</p>
-        </div>
-    </section>
-
-    <!-- Skills Section -->
-    <section id="skills" class="content-section">
-        <h2>Skills</h2>
-        <ul class="skills-list">
-            <li>HTML/CSS</li>
-            <li>JavaScript</li>
-            <li>Kali Linux Tools</li>
-            <li>Git & GitHub</li>
-            <li>NodeMCU Projects</li>
-        </ul>
-    </section>
-
-    <!-- Projects Section -->
-    <section id="projects" class="content-section">
-        <h2>Projects</h2>
-        <div class="card">Wi-Fi Scanning & Jamming Scripts</div>
-        <div class="card">IoT Home Automation (NodeMCU)</div>
-        <div class="card">GitHub Resume Website</div>
-    </section>
-
-    <!-- Contact Section -->
-    <section id="contact" class="content-section">
-        <h2>Contact Me</h2>
-        <p>Email: ankit@example.com</p>
-        <p>GitHub: github.com/Ankit</p>
-    </section>
-
-    <!-- Secure Documents -->
-    <section class="secure-section">
-        <h2>Secure Documents</h2>
-        <div id="doc-links" style="display:none;">
-            <a href="assets/documents/degree.pdf" target="_blank">Degree</a>
-            <a href="assets/documents/result.pdf" target="_blank">Results</a>
-            <a href="assets/documents/qualification.pdf" target="_blank">Qualifications</a>
-        </div>
-    </section>
-</body>
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link
+			rel="shortcut icon"
+			href="../icons/STAR Sports 1.png"
+			type="image/x-icon"
+		/>
+		<link rel="stylesheet" href="./style/style.css" />
+		<title>Star sports 1</title>
+	</head>
+	<body>
+		<div id="main" class="main">
+				<marquee scrollamount="5" class="blink">
+					সাউন্ড 🔊 শুনতে সমস্যা এবং অ্যাড এর ইস্যু এড়াতে ডিজেবল অ্যাড বাটনে ক্লিক করুন অথবা অ্যাড ব্লকার ব্যবহার করুন। ধন্যবাদ...। To avoid sound 🔊 hearing issues and ad issues, Click the Disable Ads button or use an Ads Blocker. Thank you...
+ 			</marquee>
+<!-- 				src="http://103.89.248.18:8082/STAR-SPORTS-1/embed.html?token=69160863f26491c82ca4e0c81f337313d2a705ee-b278899a58d0ff87a5304f88a4bfdca5-1715367140-1715356340&amp;remote=no_check_ip" -->
+			<iframe
+				id="myIframe"
+			 src="//stream.crichd.sc/update/star.php"
+				width="100%"
+				height="500px"
+				marginheight="0"
+				marginwidth="0"
+				scrolling="no"
+				frameborder="0"
+				allowfullscreen
+				allow="encrypted-media"
+			></iframe>
+			<div class="button-bar">
+				<button class="fs-btn" onclick="toggleFullscreen()">Fullscreen</button>
+				<button id="da">Disabled Ads</button>
+			</div>
+		</div>
+	<script src="./script/script.js"></script>
+	</body>
 </html>
