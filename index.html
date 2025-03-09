@@ -3,184 +3,40 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Live Streaming by Ankit</title>
-    <style>
-        /* General Styles */
-        body {
-            font-family: Arial, sans-serif;
-            background: #111;
-            color: white;
-            text-align: center;
-            margin: 0;
-            padding: 0;
-        }
-
-        .container {
-            padding: 20px;
-        }
-
-        h1 {
-            font-size: 26px;
-            margin-bottom: 20px;
-            text-shadow: 2px 2px 10px #ff6600;
-        }
-
-        /* Video Container */
-        .video-container {
-            width: 80%;
-            max-width: 800px;
-            margin: auto;
-            border: 3px solid #ff6600;
-            border-radius: 10px;
-            overflow: hidden;
-            position: relative;
-        }
-
-        .video-container iframe {
-            width: 100%;
-            height: 450px;
-        }
-
-        /* Loading Animation */
-        .loading {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            font-size: 20px;
-            color: #ff6600;
-            text-shadow: 0 0 10px #ff6600;
-        }
-
-        /* Controls */
-        .controls {
-            margin-top: 10px;
-        }
-
-        button {
-            padding: 10px 15px;
-            background: #ff6600;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            margin: 5px;
-            cursor: pointer;
-            transition: 0.3s;
-            font-size: 16px;
-            box-shadow: 0 0 10px #ff6600;
-        }
-
-        button:hover {
-            background: #ff4500;
-            box-shadow: 0 0 20px #ff4500;
-        }
-
-        /* Floating Video */
-        .floating-video {
-            display: none;
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            width: 320px;
-            height: 180px;
-            border: 2px solid #fff;
-            background: black;
-            z-index: 1000;
-            border-radius: 10px;
-            box-shadow: 0 0 10px #ff6600;
-        }
-
-        .floating-video iframe {
-            width: 100%;
-            height: 100%;
-        }
-
-        .floating-video button {
-            position: absolute;
-            top: 0;
-            right: 0;
-            background: red;
-            font-size: 16px;
-            padding: 5px;
-        }
-
-        /* Footer - Created by Ankit */
-        .footer {
-            margin-top: 20px;
-            font-size: 18px;
-            color: #ff6600;
-            text-shadow: 0 0 10px #ff6600;
-            font-weight: bold;
-        }
-
-        /* Mobile Responsive */
-        @media (max-width: 768px) {
-            .video-container iframe {
-                height: 250px;
-            }
-            .floating-video {
-                width: 250px;
-                height: 140px;
-            }
-        }
-    </style>
+    <title>Ankit's Video Hub</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <header>
+        <h1>Welcome to Ankit's Video Hub</h1>
+    </header>
 
-    <div class="container">
-        <h1>Live Streaming Video</h1>
+    <main>
+        <section class="video-container">
+            <iframe id="videoFrame" src="https://source1.com" frameborder="0" allowfullscreen></iframe>
+        </section>
 
-        <div class="video-container">
-            <div class="loading" id="loading">Loading Stream...</div>
-            <iframe id="liveStream" src="https://ifram.embedxt.site/iframe/frame.php" frameborder="0" allowfullscreen onload="hideLoading()"></iframe>
-        </div>
+        <section class="source-selector">
+            <h2>Select a Video Source</h2>
+            <div class="buttons">
+                <button onclick="changeSource('https://source1.com')">Source 1</button>
+                <button onclick="changeSource('https://source2.com')">Source 2</button>
+                <button onclick="changeSource('https://source3.com')">Source 3</button>
+                <button onclick="changeSource('https://source4.com')">Source 4</button>
+                <button onclick="changeSource('https://source5.com')">Source 5</button>
+                <button onclick="changeSource('https://source6.com')">Source 6</button>
+                <button onclick="changeSource('https://source7.com')">Source 7</button>
+                <button onclick="changeSource('https://source8.com')">Source 8</button>
+                <button onclick="changeSource('https://source9.com')">Source 9</button>
+                <button onclick="changeSource('https://source10.com')">Source 10</button>
+            </div>
+        </section>
+    </main>
 
-        <div class="controls">
-            <button onclick="toggleFullScreen()">Full Screen</button>
-            <button onclick="toggleFloating()">Float Video</button>
-        </div>
-    </div>
+    <footer>
+        <p>Developed by Ankit</p>
+    </footer>
 
-    <!-- Floating Video -->
-    <div class="floating-video" id="floatingVideo">
-        <iframe src="https://ifram.embedxt.site/iframe/frame.php" frameborder="0" allowfullscreen></iframe>
-        <button onclick="closeFloating()">×</button>
-    </div>
-
-    <!-- Footer -->
-    <div class="footer">
-        Created by <span style="color: #ffcc00; text-shadow: 0 0 15px #ffcc00;">Ankit</span>
-    </div>
-
-    <script>
-        // Hide Loading Animation
-        function hideLoading() {
-            document.getElementById("loading").style.display = "none";
-        }
-
-        // Full-Screen Function
-        function toggleFullScreen() {
-            let videoFrame = document.getElementById("liveStream");
-            if (videoFrame.requestFullscreen) {
-                videoFrame.requestFullscreen();
-            } else if (videoFrame.mozRequestFullScreen) {
-                videoFrame.mozRequestFullScreen();
-            } else if (videoFrame.webkitRequestFullscreen) {
-                videoFrame.webkitRequestFullscreen();
-            } else if (videoFrame.msRequestFullscreen) {
-                videoFrame.msRequestFullscreen();
-            }
-        }
-
-        // Floating Video Mode
-        function toggleFloating() {
-            document.getElementById("floatingVideo").style.display = "block";
-        }
-
-        function closeFloating() {
-            document.getElementById("floatingVideo").style.display = "none";
-        }
-    </script>
-
+    <script src="script.js"></script>
 </body>
 </html>
