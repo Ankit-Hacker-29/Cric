@@ -3,38 +3,110 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Live Cricket Stream - Ankit</title>
-    <link rel="stylesheet" href="style.css">
-    <script src="https://cdn.jwplayer.com/libraries/your-jwplayer-key.js"></script> 
+    <title>Ankit's Live Streaming</title>
+    <style>
+        /* 🔥 Dark Theme with Animations */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #0a0a0a;
+            color: #fff;
+            text-align: center;
+        }
+
+        header {
+            font-size: 28px;
+            font-weight: bold;
+            padding: 15px;
+            background: linear-gradient(90deg, #ff00ff, #00ffff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: glow 1.5s infinite alternate;
+        }
+
+        @keyframes glow {
+            from { text-shadow: 0 0 10px #ff00ff, 0 0 20px #00ffff; }
+            to { text-shadow: 0 0 20px #ff00ff, 0 0 30px #00ffff; }
+        }
+
+        main {
+            padding: 20px;
+        }
+
+        #video-container {
+            width: 90%;
+            max-width: 900px;
+            margin: 0 auto;
+            border-radius: 10px;
+            box-shadow: 0px 0px 20px rgba(0, 255, 255, 0.5);
+            overflow: hidden;
+        }
+
+        video {
+            width: 100%;
+            border-radius: 10px;
+        }
+
+        #server-buttons {
+            margin-top: 20px;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .server-btn {
+            background: linear-gradient(45deg, #ff00ff, #00ffff);
+            color: #000;
+            padding: 12px 20px;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            border: none;
+            transition: 0.4s;
+            box-shadow: 0px 0px 15px rgba(255, 0, 255, 0.8);
+        }
+
+        .server-btn:hover, .server-btn.active {
+            background: linear-gradient(45deg, #00ffff, #ff00ff);
+            color: #fff;
+            box-shadow: 0px 0px 20px rgba(0, 255, 255, 1);
+        }
+
+        #error-message {
+            display: none;
+            color: red;
+            margin-top: 15px;
+            font-weight: bold;
+        }
+
+        footer {
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #111;
+            font-size: 14px;
+        }
+
+    </style>
 </head>
 <body>
-    <header>
-        <h1>Live Cricket Streaming - Developed by Ankit</h1>
-    </header>
+    <header>🔥 Welcome to Ankit's Live Streaming 🔥</header>
 
-    <div class="container">
-        <!-- Server Selection Buttons -->
-        <div class="server-buttons">
-            <button class="server-btn" onclick="changeServer(1)">Server 1</button>
-            <button class="server-btn" onclick="changeServer(2)">Server 2</button>
-            <button class="server-btn" onclick="changeServer(3)">Server 3</button>
-            <button class="server-btn" onclick="changeServer(4)">Server 4</button>
-            <button class="server-btn" onclick="changeServer(5)">Server 5</button>
-            <button class="server-btn" onclick="changeServer(6)">Server 6</button>
-            <button class="server-btn" onclick="changeServer(7)">Server 7</button>
+    <main>
+        <div id="video-container">
+            <video id="video-player" controls></video>
+            <div id="error-message">❌ Stream not available. Try another server.</div>
         </div>
 
-        <!-- Video Player -->
-        <div class="video-container">
-            <div id="player"></div>
-        </div>
+        <div id="server-buttons"></div>
+    </main>
 
-        <!-- Floating Refresh Button -->
-        <button class="refresh-btn" onclick="reloadStream()" title="Click to refresh and make the stream live">
-            🔄 Refresh Stream
-        </button>
-    </div>
+    <footer>Designed by Ankit</footer>
 
-    <script src="script.js"></script>
+    <!-- HLS.js for Advanced M3U8 Playback -->
+    <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
+    <script src="servers.js"></script>
 </body>
 </html>
