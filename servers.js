@@ -1,6 +1,6 @@
 // 🚀 List of Streaming Servers
 const servers = [
-    { name: "Server 1", url: "https://starsportseng.pages.dev/index.m3u8" },
+    { name: "Server 1", url: "https://starsportseng.pagwes.dev/index.m3u8" },
     { name: "Server 2", url: "https://starsportshindi-2oe.pages.dev/index.m3u8" },
     { name: "Server 3", url: "https://astrocrickt.pages.dev/index.m3u8" },
     { name: "Server 4", url: "https://ifram.embedxt.site/iframe/frame.php"},
