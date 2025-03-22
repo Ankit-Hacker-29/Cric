@@ -1,112 +1,71 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ankit's Live Streaming</title>
-    <style>
-        /* 🔥 Dark Theme with Animations */
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #0a0a0a;
-            color: #fff;
-            text-align: center;
+<!DOCTYPE html><head></head><body></script><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+body {background:#000;
+            margin: 0px;
         }
 
-        header {
-            font-size: 28px;
-            font-weight: bold;
-            padding: 15px;
-            background: linear-gradient(90deg, #ff00ff, #00ffff);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            animation: glow 1.5s infinite alternate;
+        .jwplayer {width:100%;height:100%;
+            position: absolute !important;
         }
 
-        @keyframes glow {
-            from { text-shadow: 0 0 10px #ff00ff, 0 0 20px #00ffff; }
-            to { text-shadow: 0 0 20px #ff00ff, 0 0 30px #00ffff; }
+        .jwplayer.jw-flag-aspect-mode {
+            min-height: 100%;
+            max-height:100% ;
         }
 
-        main {
-            padding: 20px;
-        }
 
-        #video-container {
-            width: 90%;
-            max-width: 900px;
-            margin: 0 auto;
-            border-radius: 10px;
-            box-shadow: 0px 0px 20px rgba(0, 255, 255, 0.5);
-            overflow: hidden;
-        }
+</style>
+    <script src="//content.jwplatform.com/libraries/SAHhwvZq.js"></script>
 
-        video {
-            width: 100%;
-            border-radius: 10px;
-        }
 
-        #server-buttons {
-            margin-top: 20px;
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 10px;
-        }
 
-        .server-btn {
-            background: linear-gradient(45deg, #ff00ff, #00ffff);
-            color: #000;
-            padding: 12px 20px;
-            border-radius: 8px;
-            font-size: 16px;
-            font-weight: bold;
-            cursor: pointer;
-            border: none;
-            transition: 0.4s;
-            box-shadow: 0px 0px 15px rgba(255, 0, 255, 0.8);
-        }
 
-        .server-btn:hover, .server-btn.active {
-            background: linear-gradient(45deg, #00ffff, #ff00ff);
-            color: #fff;
-            box-shadow: 0px 0px 20px rgba(0, 255, 255, 1);
-        }
+<div id="player"></div>
 
-        #error-message {
-            display: none;
-            color: red;
-            margin-top: 15px;
-            font-weight: bold;
-        }
+<script>
+// The provided URL with the DRM parameters
+var input_url = "https://live3.shoq.com.pk/live/eds/Geo_Super/DASH/Geo_Super.mpd?|drmScheme=clearkey&drmLicense=7641daa5bacfbb61936c40a221c9e78e:5732dd242f28338e909dc06cb1a1e5a2";
 
-        footer {
-            margin-top: 20px;
-            padding: 10px;
-            background-color: #111;
-            font-size: 14px;
-        }
+// Extract the base URL and DRM license keys
+var parts = input_url.split('|');
+var url = parts[0]; // The DASH MPD URL
+var query_string = parts[1];
 
-    </style>
-</head>
-<body>
-    <header>🔥 Welcome to Ankit's Live Streaming 🔥</header>
+var params = new URLSearchParams(query_string);
+var drmScheme = params.get('drmScheme');
+var drmLicense = params.get('drmLicense');
 
-    <main>
-        <div id="video-container">
-            <video id="video-player" controls></video>
-            <div id="error-message">❌ Stream not available. Try another server.</div>
-        </div>
+var k1, k2;
 
-        <div id="server-buttons"></div>
-    </main>
+if (drmScheme === 'clearkey' && drmLicense) {
+    [k1, k2] = drmLicense.split(':');
+}
 
-    <footer>Designed by Ankit</footer>
+// Setup JW Player if the URL and keys are present
+if (url && k1 && k2) {
+    jwplayer("player").setup({
+        playlist: [{
+            sources: [{
+                file: url,
+                drm: {
+                    clearkey: {
+                        keyId: k1,
+                        key: k2
+                    }
+                }
+            }]
+        }],
+        autostart: true,
+        width: "100%", 
+        height: "100%", 
+        stretching: "",
+        aspectratio: "16:9",
+        cast: {} // Enabling Chromecast support
+    });
+} else {
+    console.error("Failed to extract DRM keys or URL from the input.");
+}
+</script>
 
-    <!-- HLS.js for Advanced M3U8 Playback -->
-    <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
-    <script src="servers.js"></script>
-</body>
-</html>
+
+</body>   </html>
