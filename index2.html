@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="//content.jwplatform.com/libraries/SAHhwvZq.js"></script>
+    <style>
+        body {
+            background: #000;
+            margin: 0px;
+        }
+        .jwplayer {
+            width: 100%;
+            height: 100%;
+            position: absolute !important;
+        }
+        .jwplayer.jw-flag-aspect-mode {
+            min-height: 100%;
+            max-height: 100%;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="player"></div>
+
+    <script>
+        // Insert your new DASH URL and parameters here
+        var input_url = "https://sshindidash-i.akamaihd.net/dash/live/2002466/sshindiwv/master.mpd?|Cookie=hdntl=exp=1742995589~acl=*sshindi*~id=b0442a2df488ac84ef378622052139f0~data=hdntl~hmac=9b6a699c0afe7180549ee48744b066aa415804fb77ffe23956bac560e5bcb7b4&User-Agent=Hotstar;in.startv.hotstar/25.02.24.8.11169%20(Android/15)&drmScheme=clearkey&drmLicense=_ncY-7P7S6eMB8wPV4dE5g:Yk4ksYQ7RZ-rCpSWCUFvDQ";
+
+        // Extract the base URL and DRM license keys
+        var parts = input_url.split('|');
+        var url = parts[0]; // The DASH MPD URL
+        var query_string = parts[1];
+
+        var params = new URLSearchParams(query_string);
+        var drmScheme = params.get('drmScheme');
+        var drmLicense = params.get('drmLicense');
+
+        var k1, k2;
+        if (drmScheme === 'clearkey' && drmLicense) {
+            [k1, k2] = drmLicense.split(':');
+        }
+
+        // Setup JW Player with the new stream
+        if (url && k1 && k2) {
+            jwplayer("player").setup({
+                playlist: [{
+                    sources: [{
+                        file: url,
+                        drm: {
+                            clearkey: {
+                                keyId: k1,
+                                key: k2
+                            }
+                        }
+                    }]
+                }],
+                autostart: true,
+                width: "100%",
+                height: "100%",
+                aspectratio: "16:9",
+                cast: {} // Enabling Chromecast support
+            });
+        } else {
+            console.error("Failed to extract DRM keys or URL from the input.");
+        }
+    </script>
+
+</body>
+</html>
