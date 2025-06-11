@@ -1,3 +1,6 @@
+// Update this to your actual PHP endpoint
+const PHP_API_URL = "https://akcoder.unaux.com/check.php";
+
 // Add your Google Family invite links here
 const inviteLinks = [
   { url: "https://families.google.com/join/promo/27UX2JTv1uB7wssZ819mMyDO6KFf7w" }, // Example invalid
@@ -32,8 +35,9 @@ function renderLinks() {
   });
 }
 
+// Fetch validity for each invite link from your PHP backend
 inviteLinks.forEach(link => {
-  fetch(`check.php?link=${encodeURIComponent(link.url)}`)
+  fetch(`${PHP_API_URL}?link=${encodeURIComponent(link.url)}`)
     .then(res => res.json())
     .then(data => {
       checkedCount++;
