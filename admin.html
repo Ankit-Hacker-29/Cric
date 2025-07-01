@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>BIN Manager - Admin</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    body {
+      background-color: #f8fafc;
+      font-family: 'Segoe UI', sans-serif;
+    }
+    .container {
+      max-width: 800px;
+      margin-top: 40px;
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 5px 30px rgba(0, 0, 0, 0.1);
+      padding: 30px;
+    }
+    .footer {
+      text-align: center;
+      color: #888;
+      margin-top: 40px;
+    }
+    .form-inline input {
+      margin-right: 10px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h3 class="mb-4">🔐 BIN Admin Panel</h3>
+
+    <form id="binForm" class="d-flex mb-3">
+      <input type="text" id="binName" class="form-control me-2" placeholder="BIN Name" required />
+      <input type="text" id="binCode" class="form-control me-2" placeholder="BIN Code" required />
+      <button class="btn btn-primary" type="submit">Add BIN</button>
+    </form>
+
+    <table class="table table-bordered table-hover">
+      <thead class="table-light">
+        <tr>
+          <th>Name</th>
+          <th>BIN</th>
+          <th style="width: 120px">Actions</th>
+        </tr>
+      </thead>
+      <tbody id="binTableBody">
+        <!-- BIN entries will appear here -->
+      </tbody>
+    </table>
+
+    <div class="footer">BIN Manager © 2025</div>
+  </div>
+
+  <script>
+    const binsFile = 'bins.json';
+    let bins = [];
+
+    async function loadBins() {
+      const response = await fetch(binsFile);
+      bins = await response.json();
+      renderTable();
+    }
+
+    function renderTable() {
+      const body = document.getElementById('binTableBody');
+      body.innerHTML = '';
+      bins.forEach((entry, i) => {
+        body.innerHTML += `
+          <tr>
+            <td><input class="form-control" value="${entry.name}" onchange="updateBin(${i}, 'name', this.value)" /></td>
+            <td><input class="form-control" value="${entry.bin}" onchange="updateBin(${i}, 'bin', this.value)" /></td>
+            <td>
+              <button class="btn btn-danger btn-sm" onclick="deleteBin(${i})">Delete</button>
+            </td>
+          </tr>`;
+      });
+    }
+
+    function updateBin(index, field, value) {
+      bins[index][field] = value;
+      saveBins();
+    }
+
+    function deleteBin(index) {
+      if (confirm('Are you sure?')) {
+        bins.splice(index, 1);
+        saveBins();
+        renderTable();
+      }
+    }
+
+    document.getElementById('binForm').addEventListener('submit', e => {
+      e.preventDefault();
+      const name = document.getElementById('binName').value.trim();
+      const bin = document.getElementById('binCode').value.trim();
+      if (!name || !bin) return;
+      bins.push({ name, bin });
+      document.getElementById('binForm').reset();
+      saveBins();
+      renderTable();
+    });
+
+    function saveBins() {
+      // This won't work in browser directly.
+      // Needs backend API (Node.js, PHP, Python) to write to file.
+      alert('To save BINs, connect this panel to a server backend (Node.js or PHP).');
+    }
+
+    window.onload = loadBins;
+  </script>
+</body>
+</html>
